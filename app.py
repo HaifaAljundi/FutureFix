@@ -22,10 +22,9 @@ with open(binary_model_filename, 'rb') as f_in:
 with open(regression_model_filename, 'rb') as f_in:
     regression_model = pickle.load(f_in)
 
-def predict_binary(data):
+def predict_binary(df):
     try:
-        df = pd.DataFrame(data[0])
-        input_data = df.values.reshape((1, 50, 3)) 
+        input_data = df.values.reshape((2240, 50, 3)) 
         y_pred_prob = binary_model.predict(input_data)
         y_pred = (y_pred_prob > 0.5).astype("int32")
         
@@ -33,10 +32,9 @@ def predict_binary(data):
     except Exception as e:
         return {'error': str(e)}
 
-def predict_regression(data):
+def predict_regression(df):
     try:
-        df = pd.DataFrame(data[0])
-        input_data = df.values.reshape((1, 50, 3))
+        input_data = df.values.reshape((2240, 50, 3))
         y_pred = regression_model.predict(input_data)
         
         days_remaining = float(y_pred[0])
@@ -67,16 +65,26 @@ class GetPredictionOutput(Resource):
 
     def post(self):
         try:
-            data = request.get_json()
-            if not data or 'model_type' not in data or 'data' not in data:
-                return {'error': 'Invalid request format.'}, 400
-            
-            model_type = data['model_type']
-            
+            if 'file' not in request.files:
+                return {'error': 'No file part in the request.'}, 400
+
+            file = request.files['file']
+            if file.filename == '':
+                return {'error': 'No file selected for uploading.'}, 400
+
+            # Read the CSV file into a DataFrame
+            df = pd.read_csv(file)
+
+            # Determine the model type from the request form data
+            model_type = request.form.get('model_type')
+            if not model_type:
+                return {'error': 'Model type not specified.'}, 400
+
+            # Make predictions based on the model type
             if model_type == 'binary':
-                predict_output = predict_binary(data['data'])
+                predict_output = predict_binary(df)
             elif model_type == 'regression':
-                predict_output = predict_regression(data['data'])
+                predict_output = predict_regression(df)
             else:
                 return {'error': 'Invalid model type specified.'}, 400
             
