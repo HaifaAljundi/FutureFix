@@ -2,8 +2,11 @@
 
 This project aims to predict future maintenance times for elevators by analyzing the Huawei German Research Center dataset. We use features such as revolutions, humidity, and vibration to develop two models: one binary model to determine if immediate maintenance is needed and another regression model to predict the number of days remaining until maintenance is required. The project involves data preprocessing, model training, and API integration for real-time testing. The models accuracy achieved 95% in predicting maintenance times for elevators, focusing on efficiency and reducing downtime to ensure safety.
 Our project supports the following Sustainable Development Goals (SDGs):
+
 •	Goal 12: Responsible Consumption and Production
+
 •	Goal 11: Sustainable Cities and Communities
+
 •	Goal 9: Industry, Innovation, and Infrastructure
 
 ![image](https://github.com/user-attachments/assets/77a0ca12-1f7d-41a3-bfeb-162700e42c88)
