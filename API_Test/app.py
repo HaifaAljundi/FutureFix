@@ -75,20 +75,14 @@ class GetPredictionOutput(Resource):
             # Read the CSV file into a DataFrame
             df = pd.read_csv(file)
 
-            # Determine the model type from the request form data
-            model_type = request.form.get('model_type')
-            if not model_type:
-                return {'error': 'Model type not specified.'}, 400
-
-            # Make predictions based on the model type
-            if model_type == 'binary':
-                predict_output = predict_binary(df)
-            elif model_type == 'regression':
-                predict_output = predict_regression(df)
-            else:
-                return {'error': 'Invalid model type specified.'}, 400
+            # Make both binary and regression predictions
+            binary_prediction = predict_binary(df)
+            regression_prediction = predict_regression(df)
             
-            return {'predict': predict_output}, 200
+            return {
+                'prediction_Prob': binary_prediction,
+                'prediction_day': regression_prediction
+            }, 200
         except Exception as error:
             return {'error': str(error)}, 500
 
