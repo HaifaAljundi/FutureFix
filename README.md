@@ -118,6 +118,9 @@ Elevator maintenance is important for ensuring safety and minimizing downtime. P
 - **Integration Process**: The model was linked to an API for real-time testing. This integration allows continuous monitoring and prediction of maintenance needs based on live data inputs.
 - **Testing**: The API was tested to ensure accurate and timely predictions.
 
+![Screen Shot 2024-07-27 at 8 00 21 PM](https://github.com/user-attachments/assets/3e788e95-8fcb-47b3-94ee-09e0e0590ddc)
+
+
 ## Results
 - **Findings**: The model successfully predicted maintenance time needs with an accuracy of 95%. The results showed that the most significant predictors were revolutions and vibration.
 
