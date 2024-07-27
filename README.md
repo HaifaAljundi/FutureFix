@@ -42,7 +42,6 @@ Our project supports the following Sustainable Development Goals (SDGs):
 9. [Results](#results)
 10. [Conclusion](#conclusion)
 11. [References](#references)
-12. [Appendix](#appendix)
 
 ## Introduction
 Elevator maintenance is important for ensuring safety and minimizing downtime. Predictive maintenance helps determine the best time for servicing elevators by analyzing operational data. By using features such as humidity and vibration, we can predict when an elevator requires maintenance through trained models.
