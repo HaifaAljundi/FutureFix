@@ -105,14 +105,12 @@ Elevator maintenance is important for ensuring safety and minimizing downtime. P
 
 ## Implementation
 ### Model Implementation
-
--	**Binary Classification Model:
-A binary classification model was selected to predict whether immediate maintenance is needed. The decision tree algorithm was implemented using Scikit-Learn. Key steps included training the model with historical data and tuning hyperparameters for optimal performance.
+- **Binary Classification Model**: A binary classification model was selected to predict whether immediate maintenance is needed. The decision tree algorithm was implemented using Scikit-Learn. Key steps included training the model with historical data and tuning hyperparameters for optimal performance.
 
 ![image](https://github.com/user-attachments/assets/2489433a-b67c-4e5c-8e2a-9fd9757422ae)
 
--	**Regression Model:
-A regression model was selected to predict the number of days remaining until the next maintenance, using the last maintenance date as a reference. The decision tree algorithm was also used for this model, implemented using Scikit-Learn, with similar steps of training and hyperparameter tuning for optimal performance.
+- **Regression Model**: A regression model was selected to predict the number of days remaining until the next maintenance, using the last maintenance date as a reference. The decision tree algorithm was also used for this model, implemented using Scikit-Learn, with similar steps of training and hyperparameter tuning for optimal performance.
+
 
 
 ![image](https://github.com/user-attachments/assets/53c0881c-4349-459b-a4e1-0e8e6daab7cd)
