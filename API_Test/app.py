@@ -56,9 +56,6 @@ class Test(Resource):
             return jsonify({'error': str(error)}), 500
 
 class GetPredictionOutput(Resource):
-    def get(self):
-        return jsonify({"error": "Invalid Method."}), 405
-
     def post(self):
         global stored_response, stored_df
         try:
@@ -83,8 +80,7 @@ class GetPredictionOutput(Resource):
             return stored_response , 200
         except Exception as error:
             return jsonify({'error': str(error)}), 500
-
-class FetchStoredResponse(Resource):
+        
     def get(self):
         global stored_response
         if stored_response:
@@ -92,10 +88,10 @@ class FetchStoredResponse(Resource):
             return stored_response, 200
         else:
             return jsonify({"error": "No stored response available."}), 404
+        
 
 api.add_resource(Test, '/')
 api.add_resource(GetPredictionOutput, '/getPredictionOutput')
-api.add_resource(FetchStoredResponse, '/fetchStoredResponse')
 
 if __name__ == '__main__':
     app.run(debug=True)
