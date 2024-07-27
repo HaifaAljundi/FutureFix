@@ -42,7 +42,6 @@ A binary classification model was selected to predict whether immediate maintena
 •	Regression Model:
 A regression model was selected to predict the number of days remaining until the next maintenance, using the last maintenance date as a reference. The decision tree algorithm was also used for this model, implemented using Scikit-Learn, with similar steps of training and hyperparameter tuning for optimal performance.
 
-![image](https://github.com/user-attachments/assets/fb792f48-3b28-4885-b52e-31cd26ee8858)
 
 ![image](https://github.com/user-attachments/assets/53c0881c-4349-459b-a4e1-0e8e6daab7cd)
 
