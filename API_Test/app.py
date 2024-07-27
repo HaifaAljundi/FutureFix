@@ -84,7 +84,7 @@ class GetPredictionOutput(Resource):
     def get(self):
         global stored_response
         if stored_response:
-            # Return the stored response as JSON
+
             return stored_response, 200
         else:
             return jsonify({"error": "No stored response available."}), 404
