@@ -18,9 +18,14 @@ Our project supports the following Sustainable Development Goals (SDGs):
 
 • Results: The model achieved an accuracy of 95% and demonstrated good performance in predicting maintenance date.
 
+### Binary Classification
+
 ![model_accuracy](https://github.com/user-attachments/assets/9b6f4d35-07bf-4be5-88d0-3cbdf53224f0)
 
 ![model_loss](https://github.com/user-attachments/assets/9d45c5e4-5d59-4390-a73b-e823e7fde5c3)
+
+
+### Regression 
 
 ![model_mae](https://github.com/user-attachments/assets/21af487a-df50-4653-a383-e17f9fda5b56)
 
