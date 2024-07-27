@@ -57,7 +57,7 @@ class Test(Resource):
 
 class GetPredictionOutput(Resource):
     def post(self):
-        global stored_response, stored_df
+        global stored_response
         try:
             if 'file' not in request.files:
                 return jsonify({'error': 'No file part in the request.'}), 400
@@ -67,7 +67,6 @@ class GetPredictionOutput(Resource):
                 return jsonify({'error': 'No file selected for uploading.'}), 400
 
             df = pd.read_csv(file)
-            stored_df = df
 
             binary_prediction = predict_binary(df)
             regression_prediction = predict_regression(df)
