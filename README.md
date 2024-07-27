@@ -23,16 +23,20 @@ Our project supports the following Sustainable Development Goals (SDGs):
 
 ### Binary Classification
 
-![model_accuracy](https://github.com/user-attachments/assets/9b6f4d35-07bf-4be5-88d0-3cbdf53224f0)
+![image](https://github.com/user-attachments/assets/f47cba3c-40b4-40e8-9d20-67a8ebb55bb9)
 
-![model_loss](https://github.com/user-attachments/assets/9d45c5e4-5d59-4390-a73b-e823e7fde5c3)
+
+![image](https://github.com/user-attachments/assets/3915f84c-229b-4103-9de3-8e9a381f86b1)
+
 
 
 ### Regression 
 
-![model_mae](https://github.com/user-attachments/assets/21af487a-df50-4653-a383-e17f9fda5b56)
+![image](https://github.com/user-attachments/assets/36c777cf-7f8f-42b5-a0a9-6e2df162d9d4)
 
-![model_regression_loss](https://github.com/user-attachments/assets/b01cacab-0be7-4308-a8e9-a6215e05aece)
+
+![image](https://github.com/user-attachments/assets/2158506f-07bd-4444-b9c6-6fd27ecced66)
+
 
 
 
