@@ -86,19 +86,23 @@ Elevator maintenance is important for ensuring safety and minimizing downtime. P
 - 
 ### Binary Classification
 
-![image](https://github.com/user-attachments/assets/f47cba3c-40b4-40e8-9d20-67a8ebb55bb9)
+![image](https://github.com/user-attachments/assets/fcbbc668-7d28-4c69-80bb-d1ca327910f8)
 
 
-![image](https://github.com/user-attachments/assets/3915f84c-229b-4103-9de3-8e9a381f86b1)
+
+![image](https://github.com/user-attachments/assets/bb34841a-9f97-4107-b373-6885abae0459)
+
 
 
 
 ### Regression 
 
-![image](https://github.com/user-attachments/assets/36c777cf-7f8f-42b5-a0a9-6e2df162d9d4)
+![image](https://github.com/user-attachments/assets/3160be2e-d80a-4114-a260-5e2ca0573248)
 
 
-![image](https://github.com/user-attachments/assets/2158506f-07bd-4444-b9c6-6fd27ecced66)
+
+![image](https://github.com/user-attachments/assets/dce4cacf-7b93-4cb8-9fb3-f6b1a3b39465)
+
 
 
 
@@ -106,13 +110,18 @@ Elevator maintenance is important for ensuring safety and minimizing downtime. P
 ### Model Implementation
 - **Binary Classification Model**: A binary classification model was selected to predict whether immediate maintenance is needed. The decision tree algorithm was implemented using Scikit-Learn. Key steps included training the model with historical data and tuning hyperparameters for optimal performance.
 
-![image](https://github.com/user-attachments/assets/2489433a-b67c-4e5c-8e2a-9fd9757422ae)
+![image](https://github.com/user-attachments/assets/907ae32d-db37-4b55-9901-cd7fc2ac135f)
+
+
+
 
 - **Regression Model**: A regression model was selected to predict the number of days remaining until the next maintenance, using the last maintenance date as a reference. The decision tree algorithm was also used for this model, implemented using Scikit-Learn, with similar steps of training and hyperparameter tuning for optimal performance.
 
 
 
-![image](https://github.com/user-attachments/assets/53c0881c-4349-459b-a4e1-0e8e6daab7cd)
+![image](https://github.com/user-attachments/assets/a873cf75-7f3b-4a60-8c76-84c6a0dd88d6)
+
+
 
 ### API Integration
 - **Integration Process**: The model was linked to an API for real-time testing. This integration allows continuous monitoring and prediction of maintenance needs based on live data inputs.
