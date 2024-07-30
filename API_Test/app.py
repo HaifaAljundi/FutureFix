@@ -35,7 +35,7 @@ def predict_regression(df):
     try:
         input_data = df.values.reshape((2240, 50, 3))
         y_pred = regression_model.predict(input_data)
-        days_remaining = int(round(float(y_pred[0])))
+        days_remaining = max(0, round(float(y_pred[0])))
         start_date = datetime(2024, 8, 2)
         maintenance_date = (start_date + timedelta(days=days_remaining)).strftime('%Y-%m-%d')
         return {'days_remaining': days_remaining, 'maintenance_date': maintenance_date}
