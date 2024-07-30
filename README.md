@@ -90,22 +90,25 @@ Elevator maintenance is important for ensuring safety and minimizing downtime. P
 - 
 ### Binary Classification
 
-![image](https://github.com/user-attachments/assets/fcbbc668-7d28-4c69-80bb-d1ca327910f8)
+![image](https://github.com/user-attachments/assets/302e3087-50bc-4df7-b9c3-02fcbd8ef969)
 
 
 
-![image](https://github.com/user-attachments/assets/bb34841a-9f97-4107-b373-6885abae0459)
+
+![image](https://github.com/user-attachments/assets/bd3e04c4-e384-4a1a-8814-1734b1c821e8)
+
 
 
 
 
 ### Regression 
 
-![image](https://github.com/user-attachments/assets/3160be2e-d80a-4114-a260-5e2ca0573248)
+![image](https://github.com/user-attachments/assets/aa2739a0-fb60-44d6-9e3b-8e901570a1dc)
 
 
 
-![image](https://github.com/user-attachments/assets/dce4cacf-7b93-4cb8-9fb3-f6b1a3b39465)
+![image](https://github.com/user-attachments/assets/ae400d98-51d8-4a5e-8cf4-0a92a13952fb)
+
 
 
 
@@ -114,7 +117,8 @@ Elevator maintenance is important for ensuring safety and minimizing downtime. P
 ### Model Implementation
 - **Binary Classification Model**: A binary classification model was selected to predict whether immediate maintenance is needed. The decision tree algorithm was implemented using Scikit-Learn. Key steps included training the model with historical data and tuning hyperparameters for optimal performance.
 
-![image](https://github.com/user-attachments/assets/907ae32d-db37-4b55-9901-cd7fc2ac135f)
+![image](https://github.com/user-attachments/assets/1f6f89e3-921a-4e74-89ce-a15d28bedc6d)
+
 
 
 
@@ -123,7 +127,8 @@ Elevator maintenance is important for ensuring safety and minimizing downtime. P
 
 
 
-![image](https://github.com/user-attachments/assets/a873cf75-7f3b-4a60-8c76-84c6a0dd88d6)
+![image](https://github.com/user-attachments/assets/0de62f21-34cf-4b2a-92b3-e5143315f591)
+
 
 
 
