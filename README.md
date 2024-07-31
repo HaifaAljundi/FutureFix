@@ -151,6 +151,8 @@ The project demonstrates the potential of machine learning for predictive mainte
 3. Liaw, A., & Wiener, M. (2002). Classification and regression by randomForest. R News, 2(3).
 4. Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., … & Vanderplas, J. (2011). Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12, 2825-2830.
 5. Tibshirani, R. (1996). Regression shrinkage and selection via the lasso. Journal of the Royal Statistical Society: Series B (Methodological).
+6. Understanding LSTM Networks http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+7. Predictive Maintenance: Step 2A of 3, train and evaluate regression models https://gallery.cortanaintelligence.com/Experiment/Predictive-Maintenance-Step-2A-of-3-train-and-evaluate-regression-models-2
 
 
 
