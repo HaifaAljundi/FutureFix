@@ -9,6 +9,9 @@ import json
 import os
 import requests
 
+app = Flask(__name__)
+CORS(app, resources={r"*": {"origins": "*"}})
+api = Api(app)
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -20,10 +23,6 @@ gemini_api_endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/
 headers = {
     'Content-Type': 'application/json',
 }
-
-app = Flask(__name__)
-CORS(app, resources={r"*": {"origins": "*"}})
-api = Api(app)
 
 # Load models
 binary_model_filename = "my_model.pkl"
@@ -41,14 +40,14 @@ def call_gemini_api(input_data):
             "contents": [
                 {
                     "parts": [
-                        {"text": "Some prediction request based on input data"}  # Adapt payload as needed
+                        {"text": "Some prediction request based on input data"} 
                     ]
                 }
             ]
         }
         response = requests.post(gemini_api_endpoint, headers=headers, json=payload)
         if response.status_code == 200:
-            return response.json()  # Return the response as JSON
+            return response.json()  
         else:
             return {'error': f"Gemini API request failed with status code {response.status_code}: {response.text}"}
     except Exception as e:
