@@ -6,7 +6,20 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import json
+import os
+import requests
 
+
+# Load environment variables
+from dotenv import load_dotenv
+load_dotenv()
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+
+# Define the API endpoint and headers
+gemini_api_endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={GOOGLE_API_KEY}"
+headers = {
+    'Content-Type': 'application/json',
+}
 
 app = Flask(__name__)
 CORS(app, resources={r"*": {"origins": "*"}})
@@ -22,20 +35,53 @@ with open(binary_model_filename, 'rb') as f_in:
 with open(regression_model_filename, 'rb') as f_in:
     regression_model = pickle.load(f_in)
 
+def call_gemini_api(input_data):
+    try:
+        payload = {
+            "contents": [
+                {
+                    "parts": [
+                        {"text": "Some prediction request based on input data"}  # Adapt payload as needed
+                    ]
+                }
+            ]
+        }
+        response = requests.post(gemini_api_endpoint, headers=headers, json=payload)
+        if response.status_code == 200:
+            return response.json()  # Return the response as JSON
+        else:
+            return {'error': f"Gemini API request failed with status code {response.status_code}: {response.text}"}
+    except Exception as e:
+        return {'error': str(e)}
+
 def predict_binary(df):
     try:
-        input_data = df.values.reshape((2240, 50, 3))
-        y_pred_prob = binary_model.predict(input_data)
-        y_pred = (y_pred_prob > 0.5).astype("int32")
-        return 'Need Maintenance' if y_pred[0] == 1 else 'No Need Maintenance'
+        input_data = df.values.reshape((3733, 40, 3))
+        gemini_response = call_gemini_api(input_data)
+        
+        if 'error' in gemini_response:
+            return gemini_response['error']
+        
+        
+        y_pred_prob = gemini_response.get('predictions', [0])[0]
+        
+        # Ensure y_pred_prob is a boolean before converting to an integer
+        y_pred = int(bool(y_pred_prob))
+
+        return 'Need Maintenance' if y_pred == 1 else 'No Need Maintenance'
     except Exception as e:
         return {'error': str(e)}
 
 def predict_regression(df):
     try:
-        input_data = df.values.reshape((2240, 50, 3))
-        y_pred = regression_model.predict(input_data)
-        days_remaining = max(0, round(float(y_pred[0])))
+        input_data = df.values.reshape((3733, 40, 3))
+        gemini_response = call_gemini_api(input_data)
+        
+        if 'error' in gemini_response:
+            return gemini_response['error']
+        
+        y_pred = gemini_response.get('predictions', [0])[0]
+        days_remaining = max(0, round(float(y_pred)))
         start_date = datetime(2024, 8, 2)
         maintenance_date = (start_date + timedelta(days=days_remaining)).strftime('%Y-%m-%d')
         return {'days_remaining': days_remaining, 'maintenance_date': maintenance_date}

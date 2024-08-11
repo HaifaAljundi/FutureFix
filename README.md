@@ -1,15 +1,8 @@
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/d690e851-3df1-4965-8af6-1b78473c7cef" alt="Elevator Predictive Maintenance" width="50%"/>
-</div>
-
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-
-
 
 
 # Elevator Predictive Maintenance
-**Haifa Aljundi | Zyad Abdelhafiz**  
-*Apsiyon Hackathon*
+
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Abstract
 This project aims to predict future maintenance times for elevators by analyzing the Huawei German Research Center dataset. We use features such as revolutions, humidity, and vibration to develop two models: one binary model to determine if immediate maintenance is needed and another regression model to predict the number of days remaining until maintenance is required. The project involves data preprocessing, model training, and API integration for real-time testing. The models achieved 95% accuracy in predicting maintenance times for elevators, focusing on efficiency and reducing downtime to ensure safety.
