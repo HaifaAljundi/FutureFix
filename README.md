@@ -35,7 +35,7 @@ Our project supports the following Sustainable Development Goals (SDGs):
 7. [Evaluation Metrics](#evaluation-metrics)
 8. [Implementation](#implementation)
    - Model Implementation
-   - API Integration
+   - Gemini API Integration
 9. [Results](#results)
 10. [Conclusion](#conclusion)
 11. [References](#references)
@@ -125,9 +125,9 @@ Elevator maintenance is important for ensuring safety and minimizing downtime. P
 
 
 
-### API Integration
-- **Integration Process**: The model was linked to an API for real-time testing. This integration allows continuous monitoring and prediction of maintenance needs based on live data inputs.
-- **Testing**: The API was tested to ensure accurate and timely predictions.
+### Gemini API Integration
+- **Integration Process**: The model was linked to an Gemini API for real-time testing. This integration allows continuous monitoring and prediction of maintenance needs based on live data inputs.
+- **Testing**: The Gemini API was tested to ensure accurate and timely predictions, this integration makes predictive maintenance more reliable and scalable.
 
 ![Screen Shot 2024-07-27 at 8 00 21 PM](https://github.com/user-attachments/assets/3e788e95-8fcb-47b3-94ee-09e0e0590ddc)
 
