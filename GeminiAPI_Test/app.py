@@ -40,7 +40,7 @@ def call_gemini_api(input_data):
             "contents": [
                 {
                     "parts": [
-                        {"text": "Some prediction request based on input data"} 
+                        {"text": "Some prediction request based on input data"}
                     ]
                 }
             ]
@@ -53,6 +53,10 @@ def call_gemini_api(input_data):
     except Exception as e:
         return {'error': str(e)}
 
+def extract_contextual_insights(gemini_response):
+    insights = gemini_response.get('insights', 'No insights available')
+    return insights
+
 def predict_binary(df):
     try:
         input_data = df.values.reshape((3733, 40, 3))
@@ -61,13 +65,14 @@ def predict_binary(df):
         if 'error' in gemini_response:
             return gemini_response['error']
         
-        
         y_pred_prob = gemini_response.get('predictions', [0])[0]
-        
-        # Ensure y_pred_prob is a boolean before converting to an integer
         y_pred = int(bool(y_pred_prob))
+        insights = extract_contextual_insights(gemini_response)
 
-        return 'Need Maintenance' if y_pred == 1 else 'No Need Maintenance'
+        return {
+            'prediction': 'Need Maintenance' if y_pred == 1 else 'No Need Maintenance',
+            'insights': insights
+        }
     except Exception as e:
         return {'error': str(e)}
 
@@ -83,7 +88,13 @@ def predict_regression(df):
         days_remaining = max(0, round(float(y_pred)))
         start_date = datetime(2024, 8, 2)
         maintenance_date = (start_date + timedelta(days=days_remaining)).strftime('%Y-%m-%d')
-        return {'days_remaining': days_remaining, 'maintenance_date': maintenance_date}
+        insights = extract_contextual_insights(gemini_response)
+        
+        return {
+            'days_remaining': days_remaining,
+            'maintenance_date': maintenance_date,
+            'insights': insights
+        }
     except Exception as e:
         return {'error': str(e)}
 
