@@ -89,7 +89,7 @@ def predict_regression(df):
 
 class Test(Resource):
     def get(self):
-        return jsonify({'message': 'Welcome to Test App API!'})
+        return jsonify({'message': 'Welcome to Test FutureFix App!'})
 
     def post(self):
         try:
