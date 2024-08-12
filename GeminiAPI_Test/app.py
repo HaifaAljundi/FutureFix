@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 import json
 import os
 import requests
+import google.generativeai as genai
 
 app = Flask(__name__)
 CORS(app, resources={r"*": {"origins": "*"}})
@@ -18,11 +19,12 @@ from dotenv import load_dotenv
 load_dotenv()
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 
-# Define the API endpoint and headers
-gemini_api_endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={GOOGLE_API_KEY}"
-headers = {
-    'Content-Type': 'application/json',
-}
+# Configure Google Generative AI
+genai.configure(api_key=GOOGLE_API_KEY)
+model = genai.GenerativeModel(
+    'gemini-1.5-flash',
+    generation_config={"response_mime_type": "application/json"}
+)
 
 # Load models
 binary_model_filename = "my_model.pkl"
@@ -36,26 +38,18 @@ with open(regression_model_filename, 'rb') as f_in:
 
 def call_gemini_api(input_data):
     try:
-        payload = {
-            "contents": [
-                {
-                    "parts": [
-                        {"text": "Some prediction request based on input data"}
-                    ]
-                }
-            ]
-        }
-        response = requests.post(gemini_api_endpoint, headers=headers, json=payload)
-        if response.status_code == 200:
-            return response.json()  
-        else:
-            return {'error': f"Gemini API request failed with status code {response.status_code}: {response.text}"}
+        prompt = f"Generate insights based on the input data: {input_data}"
+        response = model.generate_content(prompt)
+        return response.text 
     except Exception as e:
         return {'error': str(e)}
 
 def extract_contextual_insights(gemini_response):
-    insights = gemini_response.get('insights', 'No insights available')
-    return insights
+    try:
+        insights = json.loads(gemini_response)
+        return insights
+    except json.JSONDecodeError:
+        return 'No insights available'
 
 def predict_binary(df):
     try:
@@ -65,7 +59,8 @@ def predict_binary(df):
         if 'error' in gemini_response:
             return gemini_response['error']
         
-        y_pred_prob = gemini_response.get('predictions', [0])[0]
+        # Process the response as needed
+        y_pred_prob = np.random.choice([0, 1])  # Mock prediction
         y_pred = int(bool(y_pred_prob))
         insights = extract_contextual_insights(gemini_response)
 
@@ -84,7 +79,8 @@ def predict_regression(df):
         if 'error' in gemini_response:
             return gemini_response['error']
         
-        y_pred = gemini_response.get('predictions', [0])[0]
+        # Process the response as needed
+        y_pred = np.random.uniform(0, 100)  # Mock prediction
         days_remaining = max(0, round(float(y_pred)))
         start_date = datetime(2024, 8, 2)
         maintenance_date = (start_date + timedelta(days=days_remaining)).strftime('%Y-%m-%d')
