@@ -1,8 +1,11 @@
 
 
-# Predictive Maintenance
+# FutureFix | Predictive Maintenance
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+![Screen Shot 2024-08-14 at 7 06 27 AM](https://github.com/user-attachments/assets/259d0a50-9ce2-4037-93e0-adb13732ed64)
+
 
 ## Abstract
 This project aims to predict future maintenance times for elevators by analyzing the Huawei German Research Center dataset. We use features such as revolutions, humidity, and vibration to develop two models: one binary model to determine if immediate maintenance is needed and another regression model to predict the number of days remaining until maintenance is required. The project involves data preprocessing, model training, and API integration for real-time testing. The models achieved 95% accuracy in predicting maintenance times for elevators, focusing on efficiency and reducing downtime to ensure safety.
