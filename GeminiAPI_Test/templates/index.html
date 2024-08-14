@@ -170,19 +170,13 @@
                 const textInsights = data.prediction_Prob.insights.map(insight => `<li>${insight.insight}</li>`).join('');
 
                 // Format detailed insights
-                const detailedInsights = data.prediction_day.insights.map(item => 
-                    `<tr>
-                        <td>${item.confidence}</td>
-                        <td>${item.evidence}</td>
-                        <td>${item.insight}</td>
-                    </tr>`
-                ).join('');
+                const detailedInsights = data.prediction_day.insights.map(item => `<li>${item.insight}</li>`).join('');
 
                 resultDiv.innerHTML = `
                     <h2>Prediction Results:</h2>
                     <p><strong>Prediction:</strong> ${data.prediction_Prob.prediction}</p>
                     
-                    <h3>Text Insights:</h3>
+                    <h3>Insights By Gemini-1.5-Flash:</h3>
                     <ul>${textInsights}</ul>
                     
                     <h3>Days Remaining:</h3>
@@ -191,19 +185,8 @@
                     <h3>Maintenance Date:</h3>
                     <p>${data.prediction_day.maintenance_date}</p>
                     
-                    <h3>Detailed Insights:</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Confidence</th>
-                                <th>Evidence</th>
-                                <th>Insight</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${detailedInsights}
-                        </tbody>
-                    </table>
+                    <h3>Detailed Insights By Gemini-1.5-Flash:</h3>
+                    <ol>${detailedInsights}</ol>
                 `;
             }
         }
