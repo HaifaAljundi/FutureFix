@@ -60,12 +60,13 @@ def predict_binary(df):
             return gemini_response['error']
         
         # Process the response as needed
-        y_pred_prob = np.random.choice([0, 1])  # Mock prediction
-        y_pred = int(bool(y_pred_prob))
+        y_pred_prob = binary_model.predict(input_data)
+        y_pred = (y_pred_prob > 0.5).astype("int32")
+        y_pred_value = y_pred.flatten()[0]
         insights = extract_contextual_insights(gemini_response)
 
         return {
-            'prediction': 'Need Maintenance' if y_pred == 1 else 'No Need Maintenance',
+            'prediction': 'Need Maintenance' if y_pred_value == 0 else 'No Need Maintenance',
             'insights': insights
         }
     except Exception as e:
@@ -80,8 +81,8 @@ def predict_regression(df):
             return gemini_response['error']
         
         # Process the response as needed
-        y_pred = np.random.uniform(0, 100)  # Mock prediction
-        days_remaining = max(0, round(float(y_pred)))
+        y_pred = regression_model.predict(input_data)
+        days_remaining = max(0, round(float(y_pred[0])))
         start_date = datetime(2024, 8, 2)
         maintenance_date = (start_date + timedelta(days=days_remaining)).strftime('%Y-%m-%d')
         insights = extract_contextual_insights(gemini_response)
