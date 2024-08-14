@@ -4,7 +4,8 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-![Screen Shot 2024-08-14 at 7 06 27 AM](https://github.com/user-attachments/assets/259d0a50-9ce2-4037-93e0-adb13732ed64)
+![Screen Shot 2024-08-14 at 8 37 05 AM](https://github.com/user-attachments/assets/8dc727ad-3bc8-4df3-b5c6-36c6e9486dcd)
+
 
 
 ## Abstract
