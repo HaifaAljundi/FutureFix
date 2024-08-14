@@ -62,7 +62,7 @@ Elevator maintenance is important for ensuring safety and minimizing downtime. P
    - Can handle data from many elevators in different locations.
    - Suitable for large buildings or multiple properties managed by Apsiyon.
 5. **Technological Integration**
-   - Can be integrated with Apsiyon’s current building management systems.
+   - Can be integrated with any management systems.
    - Allows for real-time monitoring and alerts, improving response times.
 6. **Environmental Impact**
    - Reduces energy use by maintaining elevators more efficiently.
