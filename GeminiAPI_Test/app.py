@@ -82,7 +82,7 @@ def predict_regression(df):
         
         # Process the response as needed
         y_pred = regression_model.predict(input_data)
-        days_remaining = max(0, round(float(y_pred[0])))
+        days_remaining = max(0, round(float(y_pred.flatten()[0])))
         start_date = datetime(2024, 8, 2)
         maintenance_date = (start_date + timedelta(days=days_remaining)).strftime('%Y-%m-%d')
         insights = extract_contextual_insights(gemini_response)
