@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from flask_restful import Api, Resource
 import pickle
@@ -95,55 +95,34 @@ def predict_regression(df):
     except Exception as e:
         return {'error': str(e)}
 
-class Test(Resource):
-    def get(self):
-        return jsonify({'message': 'Welcome to Test FutureFix App!'})
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-    def post(self):
-        try:
-            value = request.get_json()
-            if value:
-                return jsonify({'Post Values': value}), 201
-            return jsonify({"error": "Invalid format."}), 400
-        except Exception as error:
-            return jsonify({'error': str(error)}), 500
+@app.route('/getPredictionOutput', methods=['POST'])
+def get_prediction_output():
+    global stored_response
+    try:
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file part in the request.'}), 400
 
-class GetPredictionOutput(Resource):
-    def post(self):
-        global stored_response
-        try:
-            if 'file' not in request.files:
-                return jsonify({'error': 'No file part in the request.'}), 400
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify({'error': 'No file selected for uploading.'}), 400
 
-            file = request.files['file']
-            if file.filename == '':
-                return jsonify({'error': 'No file selected for uploading.'}), 400
+        df = pd.read_csv(file)
 
-            df = pd.read_csv(file)
+        binary_prediction = predict_binary(df)
+        regression_prediction = predict_regression(df)
 
-            binary_prediction = predict_binary(df)
-            regression_prediction = predict_regression(df)
+        stored_response = {
+            'prediction_Prob': binary_prediction,
+            'prediction_day': regression_prediction
+        }
 
-            stored_response = {
-                'prediction_Prob': binary_prediction,
-                'prediction_day': regression_prediction
-            }
-
-            return stored_response , 200
-        except Exception as error:
-            return jsonify({'error': str(error)}), 500
-        
-    def get(self):
-        global stored_response
-        if stored_response:
-
-            return stored_response, 200
-        else:
-            return jsonify({"error": "No stored response available."}), 404
-        
-
-api.add_resource(Test, '/')
-api.add_resource(GetPredictionOutput, '/getPredictionOutput')
+        return stored_response, 200
+    except Exception as error:
+        return jsonify({'error': str(error)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
