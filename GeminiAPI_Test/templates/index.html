@@ -1,195 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Future Fix App</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7f6;
+      }
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      h1 {
+        text-align: center;
+        color: #333333;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      input[type="file"] {
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+      button {
+        padding: 12px 24px;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .result {
+        margin-top: 30px;
+      }
+      .result h2 {
+        margin-bottom: 15px;
+        color: #333333;
+      }
+      .result h3 {
+        margin-top: 20px;
+        color: #555555;
+      }
+      .result p {
+        margin: 5px 0;
+        color: #666666;
+      }
+      ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        color: #444444;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #dddddd;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f7f7f7;
+        color: #333333;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      tr:hover {
+        background-color: #eaeaea;
+      }
+      /* Loading Spinner Styles */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        display: none; /* Hidden by default */
+      }
+      .spinner {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #007bff;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
+        100% {
+          transform: rotate(360deg);
         }
-        h1 {
-            text-align: center;
-            color: #333333;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        input[type="file"] {
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-        button {
-            padding: 12px 24px;
-            font-size: 16px;
-            color: #ffffff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .result {
-            margin-top: 30px;
-        }
-        .result h2 {
-            margin-bottom: 15px;
-            color: #333333;
-        }
-        .result h3 {
-            margin-top: 20px;
-            color: #555555;
-        }
-        .result p {
-            margin: 5px 0;
-            color: #666666;
-        }
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
-            color: #444444;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #dddddd;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f7f7f7;
-            color: #333333;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #eaeaea;
-        }
-        /* Loading Spinner Styles */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            display: none; /* Hidden by default */
-        }
-        .spinner {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #007bff;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Future Fix App</h1>
-        <form id="uploadForm" enctype="multipart/form-data">
-            <input type="file" id="fileInput" name="file" accept=".csv" required>
-            <button type="submit">Upload and Predict</button>
-        </form>
-        <div class="result" id="result"></div>
+      <h1>Future Fix App</h1>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" accept=".csv" required />
+        <button type="submit">Upload and Predict</button>
+      </form>
+      <div class="result" id="result"></div>
     </div>
 
     <!-- Loading Spinner -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
+      <div class="spinner"></div>
     </div>
 
     <script>
-        document.getElementById('uploadForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
 
-            var formData = new FormData();
-            formData.append('file', document.getElementById('fileInput').files[0]);
+          var formData = new FormData();
+          formData.append(
+            "file",
+            document.getElementById("fileInput").files[0]
+          );
 
-            // Show loading spinner
-            document.getElementById('loadingOverlay').style.display = 'flex';
+          // Show loading spinner
+          document.getElementById("loadingOverlay").style.display = "flex";
 
-            fetch('/getPredictionOutput', {
-                method: 'POST',
-                body: formData
+          fetch("/getPredictionOutput", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              displayResult(data);
+              // Hide loading spinner
+              document.getElementById("loadingOverlay").style.display = "none";
             })
-            .then(response => response.json())
-            .then(data => {
-                displayResult(data);
-                // Hide loading spinner
-                document.getElementById('loadingOverlay').style.display = 'none';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('result').innerHTML = '<p>Error: ' + error.message + '</p>';
-                // Hide loading spinner
-                document.getElementById('loadingOverlay').style.display = 'none';
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById("result").innerHTML =
+                "<p>Error: " + error.message + "</p>";
+              // Hide loading spinner
+              document.getElementById("loadingOverlay").style.display = "none";
             });
         });
 
         function displayResult(data) {
-            const resultDiv = document.getElementById('result');
+    const resultDiv = document.getElementById('result');
+    
+    if (data.error) {
+        resultDiv.innerHTML = '<p>Error: ' + data.error + '</p>';
+    } else {
+        // Format text insights
+        let textInsights = formatInsights(data.prediction_Prob.insights);
+
+        // Format detailed insights
+        let detailedInsights = formatInsights(data.prediction_day.insights);
+
+        resultDiv.innerHTML = `
+            <h2>Prediction Results:</h2>
+            <p><strong>Prediction:</strong> ${data.prediction_Prob.prediction || 'No prediction available'}</p>
             
-            if (data.error) {
-                resultDiv.innerHTML = '<p>Error: ' + data.error + '</p>';
-            } else {
-                // Format text insights
-                const textInsights = data.prediction_Prob.insights.map(insight => `<li>${insight.insight}</li>`).join('');
+            <h3>Insights By Gemini-1.5-Flash:</h3>
+            ${textInsights}
+            
+            <h3>Days Remaining:</h3>
+            <p>${data.prediction_day.days_remaining}</p>
+            
+            <h3>Maintenance Date:</h3>
+            <p>${data.prediction_day.maintenance_date}</p>
+            
+            <h3>Detailed Insights By Gemini-1.5-Flash:</h3>
+            ${detailedInsights}
+        `;
+    }
+}
 
-                // Format detailed insights
-                const detailedInsights = data.prediction_day.insights.map(item => `<li>${item.insight}</li>`).join('');
+function formatInsights(insights) {
+    if (typeof insights === 'string') {
+        try {
+            insights = JSON.parse(insights);
+        } catch (e) {
+            console.error("Error parsing insights:", e);
+            return '<p>Error parsing insights</p>';
+        }
+    }
 
-                resultDiv.innerHTML = `
-                    <h2>Prediction Results:</h2>
-                    <p><strong>Prediction:</strong> ${data.prediction_Prob.prediction}</p>
-                    
-                    <h3>Insights By Gemini-1.5-Flash:</h3>
-                    <ul>${textInsights}</ul>
-                    
-                    <h3>Days Remaining:</h3>
-                    <p>${data.prediction_day.days_remaining}</p>
-                    
-                    <h3>Maintenance Date:</h3>
-                    <p>${data.prediction_day.maintenance_date}</p>
-                    
-                    <h3>Detailed Insights By Gemini-1.5-Flash:</h3>
-                    <ol>${detailedInsights}</ol>
-                `;
+    if (!insights || typeof insights !== 'object') {
+        return '<p>No insights available</p>';
+    }
+
+    let html = '<ul>';
+    if (insights.analysis) {
+        for (const [key, value] of Object.entries(insights.analysis)) {
+            if (Array.isArray(value) && value.length > 0) {
+                html += `<li><strong>${key}:</strong> ${value[0]}</li>`;
             }
         }
+    } else {
+        for (const [key, value] of Object.entries(insights)) {
+            html += `<li><strong>${key}:</strong> ${value}</li>`;
+        }
+    }
+    html += '</ul>';
+    return html;
+}
     </script>
-</body>
+  </body>
 </html>
